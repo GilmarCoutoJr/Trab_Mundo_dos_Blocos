@@ -72,10 +72,6 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
   * `retira_bloco/3`: Remove um bloco de sua posição.
   * `coloca_bloco/3`: Coloca um bloco em uma nova posição.
 
-* **Heurística**:
-
-  * `heuristica/2`: Calcula a heurística com base nos blocos presentes no estado.
-
 ## Exemplo de Uso
 
 Após carregar o código no SWI-Prolog, basta rodar o seguinte:
