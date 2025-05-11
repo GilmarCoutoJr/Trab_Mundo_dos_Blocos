@@ -14,7 +14,6 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 * **Ações e Efeitos**: As ações podem adicionar ou remover blocos de posições e alterar o estado do mundo.
 * **Planejamento de Ações**: Um plano de ações é gerado para mover blocos de acordo com as metas.
 * **Execução de Ações**: As ações são executadas sequencialmente para alcançar o estado final desejado.
-* **Heurística**: Uma heurística simples é utilizada para priorizar blocos maiores na execução do plano.
 
 ## Requisitos
 
