@@ -81,11 +81,3 @@ Após carregar o código no SWI-Prolog, basta rodar o seguinte:
 ```
 
 Isso irá gerar um plano de movimentos de blocos que moverá os blocos do estado inicial para o estado final desejado.
-
-## Licença
-
-Este projeto é licenciado sob a [MIT License](LICENSE).
-
----
-
-Esse é um modelo de README que você pode usar como base para o seu projeto. Ele descreve o funcionamento básico do código, como utilizá-lo, os principais predicados, e exemplos de uso. Se precisar de mais alguma modificação ou detalhamento, é só me avisar!
