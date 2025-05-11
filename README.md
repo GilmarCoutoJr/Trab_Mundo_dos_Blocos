@@ -5,7 +5,7 @@ Repositório para o trabalho 1 da disciplina de IA. Alunos: Luíz Eduardo | Gabr
 
 ## Descrição
 
-Este projeto simula o planejamento e execução de movimentos de blocos em um ambiente, de forma a reordenar blocos de um estado inicial para um estado final desejado. O código define uma série de predicados em Prolog para verificar e manipular o estado do mundo dos blocos, incluindo a verificação de metas, a definição de ações e a execução de um plano de ações.
+O problema consiste em um mundo formado por blocos que podem ser empilhados uns sobre os outros ou colocados diretamente sobre a mesa. Os blocos são de diferentes comprimentos (larguras), mas iguais em altura. A principal diferença visual entre eles é, portanto, o comprimento. O objetivo do sistema é mover os blocos de modo a transformar um estado inicial do mundo em um estado final desejado, respeitando restrições como não poder colocar blocos sobre outros blocos que já estão "ocupados" (ou seja, que já têm algo em cima).
 
 ### Funcionalidades
 
