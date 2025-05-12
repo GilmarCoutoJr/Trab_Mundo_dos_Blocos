@@ -1,5 +1,6 @@
 # Trab_Mundo_dos_Blocos
 Repositório para o trabalho 1 da disciplina de IA. 
+
 Alunos: Luíz Eduardo [22251141] | Gabrielly Rodrigues [22152262] | Gilmar Couto Jr. [22152247]
 
 # Projeto de Planejamento de Movimentos de Blocos
