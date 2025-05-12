@@ -32,7 +32,7 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
      ```prolog
      plan(_, _, Plano).
      ```
-   * O predicado irá gerar um plano e executá-lo, movendo os blocos do estado final até alcançar o estado final (Goal Regression).
+   * O predicado irá gerar um plano e executá-lo, movendo os blocos do estado final até alcançar o estado inicial (lógica do Goal Regression).
 
 3. **Verificar se uma Meta foi Satisfeita**:
 
