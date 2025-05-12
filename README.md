@@ -54,7 +54,7 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 * **move(Bloco, De, Para, Estado, NovoEstado)**
   Realiza a movimentação de um bloco de uma posição para outra, atualizando o estado.
 
-* **adds(Ação, Efeitos)**
+* **adds(Action, Effects)**
   Define os efeitos da ação, ou seja, como o estado muda após a execução da ação.
 
 * **delete\_all(Goals, Effects, Result)**
@@ -69,7 +69,7 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 * **impossible(Goal, Goals)**
   Verifica se uma meta é impossível de ser alcançada.
 
-* **preconditions(Ação, Preconditions)**
+* **preconditions(Action, Preconditions)**
   Define as pré-condições necessárias para que a ação seja realizada.
 
 ### Outros Predicados de Utilidade
