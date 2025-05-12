@@ -92,7 +92,7 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
    ?- plan(estado_inicial, estado_final, Plano).
    ```
 
-   O Prolog gerará um plano de ações baseado nas condições de pré-condições e efeitos das ações. O plano será uma lista de ações que indicam como mover os blocos do estado inicial para o final.
+   O Prolog gerará um plano de ações baseado nas pré-condições e efeitos das ações. O plano será uma lista de ações que indicam como mover os blocos do estado inicial para o final.
 
 3. **Verificar a execução do plano**:
    Após a execução do plano, o Prolog mostrará as etapas de movimentação dos blocos, incluindo os detalhes de qual bloco foi movido, de onde e para onde.
