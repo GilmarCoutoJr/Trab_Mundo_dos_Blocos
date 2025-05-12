@@ -99,26 +99,3 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 
 4. **Alterar o estado inicial ou final**:
    Caso queira testar diferentes configurações, basta modificar os predicados `estado_inicial` ou `estado_final` com novos valores.
-
----
-
-### Exemplo de Uso
-
-Considere o estado inicial e final definidos abaixo:
-
-* **Estado Inicial**:
-
-  * Bloco `c` em `[0, 2]`
-  * Bloco `a` em `[3, 4]`
-  * Bloco `b` em `[5, 6]`
-  * Bloco `d` em `[3, 6]`
-
-* **Estado Final**:
-
-  * Bloco `a` em `[0, 1]`
-  * Bloco `c` em `[0, 2]`
-  * Bloco `d` em `[2, 5]`
-  * Bloco `b` em `[5, 6]`
-
-Após rodar o predicado `plan/3`, o Prolog retornará um plano com as ações necessárias para alcançar o estado final.
-
