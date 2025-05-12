@@ -54,25 +54,33 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 
 * **Predicados Principais**:
 
-  * `satisfied/2`: Verifica se todas as metas foram atingidas.
-  * `select_goal/2`: Seleciona uma meta a partir de uma lista de metas.
-  * `achieves/2`: Verifica se uma ação alcança uma meta.
-  * `preserves/2`: Verifica se uma ação preserva todas as metas, sem violar pré-condições.
-  * `regress/3`: Regressa as metas após uma ação.
-  * `can/2`: Verifica se uma ação pode ser realizada com base nas suas pré-condições.
+  * `select_goal/2`: Seleciona uma meta da lista de metas.
+  * `achieves/2`: Verifica se uma ação alcança uma determinada meta.
+  * `preserves/2`: Verifica se uma ação preserva as metas (não as viola).
+  * `regress/3`: Regride uma meta a partir de uma ação, gerando novas metas a serem satisfeitas.
+  * `remove_satisfied/2`: Remove metas da lista que já estão satisfeitas.
+  * `can/2`: Verifica se uma ação pode ser realizada com base nas pré-condições.
+  * `plan/3`: Gera um plano de ações para atingir as metas a partir do estado inicial.
+  * `executar_plano/3`: Executa o plano de ações gerado, modificando o estado até alcançar o estado final.
 
 * **Predicados de Estado**:
 
-  * `livre/2`: Verifica se um bloco está livre.
-  * `livre_destino/2`: Verifica se o destino de um bloco está livre.
-  * `estado_inicial/1`: Define o estado inicial do mundo dos blocos.
-  * `estado_final/1`: Define o estado final desejado.
+  * `estado_inicial/1`: Define o estado inicial do mundo.
+  * `estado_final/1`: Define o estado desejado (meta) do mundo.
+  * `livre/2`: Verifica se um bloco está livre (nenhum bloco em cima dele).
+  * `livre_destino/2`: Verifica se uma posição de destino está livre.
+  * `satisfied_goal/1`: Verifica se uma meta já está satisfeita no estado atual.
+  * `delete_all/3`: Remove da lista de metas aquelas que já foram satisfeitas por uma ação.
 
 * **Predicados de Ação**:
 
-  * `move/4`: Define a ação de mover um bloco.
-  * `retira_bloco/3`: Remove um bloco de sua posição.
-  * `coloca_bloco/3`: Coloca um bloco em uma nova posição.
+  * `move/5`: Define a ação de mover um bloco.
+  * `retira_bloco/4`: Remove um bloco de sua posição.
+  * `coloca_bloco/4`: Coloca um bloco em uma nova posição.
+  * `adds/2`: Define os efeitos positivos (adições) de uma ação.
+  * `deletes/2`: Define os efeitos negativos (remoções) de uma ação.
+  * `preconditions/2`: Define as pré-condições para que uma ação possa ser realizada.
+  * `can/2`: Verifica se todas as pré-condições de uma ação são satisfeitas no estado atual.
 
 ## Exemplo de Uso
 
