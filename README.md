@@ -23,16 +23,57 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 
 ## Como Usar
 
-1. **Carregar o Código**: Carregue o arquivo de código no SWI-Prolog.
+Este sistema implementa um planejador baseado em regressão no domínio do mundo dos blocos. A seguir estão os passos principais para utilizar os predicados:
 
-2. **Rodar o Planejamento**:
+### 1. Consultar o Arquivo
 
-   * Para iniciar o planejamento, use o predicado `plan/3`, passando o estado inicial, o estado final e uma variável para o plano de ações:
+Carregue o arquivo no interpretador Prolog:
 
-     ```prolog
-     plan(_, _, Plano).
-     ```
-   * O predicado irá gerar um plano e executá-lo, movendo os blocos do estado final até alcançar o estado inicial (lógica do Goal Regression).
+```prolog
+?- [arquivo].  % Substitua 'arquivo' pelo nome do seu arquivo .pl
+```
+
+### 2. Verificar se as metas estão satisfeitas
+
+Você pode verificar se um conjunto de metas já está satisfeito no estado atual:
+
+```prolog
+?- estado_inicial(S), estado_final(G), satisfied(S, G).
+```
+
+### 3. Selecionar uma Meta
+
+Para inspecionar qual meta será escolhida:
+
+```prolog
+?- estado_final(Goals), select_goal(Goals, Goal).
+```
+
+### 4. Verificar Ações
+
+Para saber se uma ação atinge uma meta:
+
+```prolog
+?- achieves(move(a, 4, 1), bloco(a, 1)).
+```
+
+### 5. Regressão de Metas
+
+Para aplicar a regressão de metas em uma ação:
+
+```prolog
+?- estado_final(Goals), regress(Goals, move(a, 4, 1), NewGoals).
+```
+
+### 6. Planejar Automaticamente
+
+Para gerar e executar um plano do estado inicial ao estado final:
+
+```prolog
+?- plan(_, _, Plano).
+```
+
+O plano será exibido e executado passo a passo, com saídas descritivas indicando os movimentos realizados.
 
 3. **Verificar se uma Meta foi Satisfeita**:
 
