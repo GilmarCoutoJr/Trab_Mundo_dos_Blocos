@@ -21,114 +21,104 @@ O problema consiste em um mundo formado por blocos que podem ser empilhados uns 
 
 * Prolog (o código foi desenvolvido e testado em SWI-Prolog)
 
-## Como Usar
+## Predicados
 
-Este sistema implementa um planejador baseado em regressão no domínio do mundo dos blocos. A seguir estão os passos principais para utilizar os predicados:
+### Predicados Principais
 
-### 1. Consultar o Arquivo
+* **plan(EstadoInicial, EstadoFinal, Plano)**
+  Gera um plano de ações para mover os blocos do estado inicial para o estado final.
 
-Carregue o arquivo no interpretador Prolog:
+  **Como usar**:
+  Para executar o plano, basta rodar a consulta:
+  `?- plan(estado_inicial, estado_final, Plano).`
 
-```prolog
-?- [arquivo].  % Substitua 'arquivo' pelo nome do seu arquivo .pl
-```
+* **executar\_plano(Plano, EstadoAtual, EstadoFinal)**
+  Executa o plano gerado, movendo os blocos conforme as ações descritas.
 
-### 2. Verificar se as metas estão satisfeitas
+### Predicados de Estado
 
-Você pode verificar se um conjunto de metas já está satisfeito no estado atual:
+* **estado\_inicial(Estado)**
+  Define o estado inicial do mundo dos blocos, onde os blocos estão posicionados.
 
-```prolog
-?- estado_inicial(S), estado_final(G), satisfied(S, G).
-```
+* **estado\_final(Estado)**
+  Define o estado final desejado, onde os blocos devem ser posicionados.
 
-### 3. Selecionar uma Meta
+* **livre(Bloco, Estado)**
+  Verifica se o bloco está livre, ou seja, não há outro bloco sobre ele.
 
-Para inspecionar qual meta será escolhida:
+* **livre\_destino(Posicao, Estado)**
+  Verifica se a posição de destino está livre, ou seja, não há outro bloco naquela posição.
 
-```prolog
-?- estado_final(Goals), select_goal(Goals, Goal).
-```
+### Predicados de Ação
 
-### 4. Verificar Ações
+* **move(Bloco, De, Para, Estado, NovoEstado)**
+  Realiza a movimentação de um bloco de uma posição para outra, atualizando o estado.
 
-Para saber se uma ação atinge uma meta:
+* **adds(Ação, Efeitos)**
+  Define os efeitos da ação, ou seja, como o estado muda após a execução da ação.
 
-```prolog
-?- achieves(move(a, 4, 1), bloco(a, 1)).
-```
+* **delete\_all(Goals, Effects, Result)**
+  Remove todos os itens das metas que estão presentes nos efeitos.
 
-### 5. Regressão de Metas
+* **regress(Goals, Action, RegressedGoals)**
+  Registra as metas após a execução de uma ação, lidando com as variáveis não instanciadas.
 
-Para aplicar a regressão de metas em uma ação:
+* **addnew(Preconditions, RemainingGoals, RegressedGoals)**
+  Adiciona novas metas ao plano, verificando se são possíveis.
 
-```prolog
-?- estado_final(Goals), regress(Goals, move(a, 4, 1), NewGoals).
-```
+* **impossible(Goal, Goals)**
+  Verifica se uma meta é impossível de ser alcançada.
 
-### 6. Planejar Automaticamente
+* **preconditions(Ação, Preconditions)**
+  Define as pré-condições necessárias para que a ação seja realizada.
 
-Para gerar e executar um plano do estado inicial ao estado final:
+### Outros Predicados de Utilidade
 
-```prolog
-?- plan(_, _, Plano).
-```
+* **retira\_bloco(Bloco, Posicao, Estado, NovoEstado)**
+  Remove um bloco de sua posição no estado.
 
-O plano será exibido e executado passo a passo, com saídas descritivas indicando os movimentos realizados.
+* **coloca\_bloco(Bloco, Posicao, Estado, NovoEstado)**
+  Coloca um bloco em uma nova posição no estado.
 
-3. **Verificar se uma Meta foi Satisfeita**:
+## Como Usar o Simulador
 
-   * Para verificar se uma meta foi satisfeita, utilize o predicado `satisfied/2` passando o estado atual e as metas a serem verificadas:
+1. **Carregar o código no SWI-Prolog**:
+   Carregue o arquivo que contém o código no seu ambiente SWI-Prolog.
 
-     ```prolog
-     satisfied(Estado, Metas).
-     ```
+2. **Executar a consulta**:
+   Para gerar um plano de ações para mover os blocos, execute a consulta abaixo no prompt do SWI-Prolog:
 
-4. **Mover Blocos**:
+   ```prolog
+   ?- plan(estado_inicial, estado_final, Plano).
+   ```
 
-   * Para mover um bloco de uma posição para outra, utilize o predicado `move/4`, passando o bloco, a posição de origem, a posição de destino, o estado atual e a variável para o novo estado:
+   O Prolog gerará um plano de ações baseado nas condições de pré-condições e efeitos das ações. O plano será uma lista de ações que indicam como mover os blocos do estado inicial para o final.
 
-     ```prolog
-     move(Bloco, De, Para, Estado, NovoEstado).
-     ```
+3. **Verificar a execução do plano**:
+   Após a execução do plano, o Prolog mostrará as etapas de movimentação dos blocos, incluindo os detalhes de qual bloco foi movido, de onde e para onde.
 
-## Estrutura do Código
+4. **Alterar o estado inicial ou final**:
+   Caso queira testar diferentes configurações, basta modificar os predicados `estado_inicial` ou `estado_final` com novos valores.
 
-* **Predicados Principais**:
+---
 
-  * `select_goal/2`: Seleciona uma meta da lista de metas.
-  * `achieves/2`: Verifica se uma ação alcança uma determinada meta.
-  * `preserves/2`: Verifica se uma ação preserva as metas (não as viola).
-  * `regress/3`: Regride uma meta a partir de uma ação, gerando novas metas a serem satisfeitas.
-  * `remove_satisfied/2`: Remove metas da lista que já estão satisfeitas.
-  * `can/2`: Verifica se uma ação pode ser realizada com base nas pré-condições.
-  * `plan/3`: Gera um plano de ações para atingir as metas a partir do estado inicial.
-  * `executar_plano/3`: Executa o plano de ações gerado, modificando o estado até alcançar o estado final.
+### Exemplo de Uso
 
-* **Predicados de Estado**:
+Considere o estado inicial e final definidos abaixo:
 
-  * `estado_inicial/1`: Define o estado inicial do mundo.
-  * `estado_final/1`: Define o estado desejado (meta) do mundo.
-  * `livre/2`: Verifica se um bloco está livre (nenhum bloco em cima dele).
-  * `livre_destino/2`: Verifica se uma posição de destino está livre.
-  * `satisfied_goal/1`: Verifica se uma meta já está satisfeita no estado atual.
-  * `delete_all/3`: Remove da lista de metas aquelas que já foram satisfeitas por uma ação.
+* **Estado Inicial**:
 
-* **Predicados de Ação**:
+  * Bloco `c` em `[0, 2]`
+  * Bloco `a` em `[3, 4]`
+  * Bloco `b` em `[5, 6]`
+  * Bloco `d` em `[3, 6]`
 
-  * `move/5`: Define a ação de mover um bloco.
-  * `retira_bloco/4`: Remove um bloco de sua posição.
-  * `coloca_bloco/4`: Coloca um bloco em uma nova posição.
-  * `adds/2`: Define os efeitos positivos (adições) de uma ação.
-  * `deletes/2`: Define os efeitos negativos (remoções) de uma ação.
-  * `preconditions/2`: Define as pré-condições para que uma ação possa ser realizada.
-  * `can/2`: Verifica se todas as pré-condições de uma ação são satisfeitas no estado atual.
+* **Estado Final**:
 
-## Exemplo de Uso
+  * Bloco `a` em `[0, 1]`
+  * Bloco `c` em `[0, 2]`
+  * Bloco `d` em `[2, 5]`
+  * Bloco `b` em `[5, 6]`
 
-Após carregar o código no SWI-Prolog, basta rodar o seguinte:
+Após rodar o predicado `plan/3`, o Prolog retornará um plano com as ações necessárias para alcançar o estado final.
 
-```prolog
-?- plan(_, _, Plano).
-```
-
-Isso irá gerar um plano de movimentos de blocos que moverá os blocos do estado inicial para o estado final desejado.
